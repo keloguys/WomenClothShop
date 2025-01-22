@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="styles/styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo" onclick="location.reload()">
+                <img src="https://dpbfm6h358sh7.cloudfront.net/images/15202078/916661874.jpg" alt="Логотип магазина">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cart-container">
+            <h2>Корзина</h2>
+            <div id="cart-items">
+                <!-- Товары в корзине JavaScript -->
+            </div>
+            <div class="cart-total">
+                Итого: <span id="cart-total-price">0</span> руб.
+            </div>
+            <button id="checkout-button" class="btn btn-primary w-100" onclick="window.location.href='checkout.html'">Оформить заказ</button>
+        </section>
+    </main>
+
+    <script src="scripts/cart.js"></script>
+</body>
+</html>

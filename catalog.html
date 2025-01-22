@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог женской одежды</title>
+    <link rel="stylesheet" href="styles/styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo" onclick="location.reload()">
+                <img src="https://dpbfm6h358sh7.cloudfront.net/images/15202078/916661874.jpg" alt="Логотип магазина">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="catalog.html" class="active"><i class="fas fa-list"></i> Каталог</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="catalog">
+            <h2>Каталог женской одежды</h2>
+            <div class="filters">
+                <div class="filter-section">
+                    <h3>Цена</h3>
+                    <div id="priceRange"></div>
+                    <p>От: <span id="priceMin">0</span> руб. - До: <span id="priceMax">5000</span> руб.</p>
+                </div>
+                <div class="filter-section">
+                    <h3>Цвет</h3>
+                    <select id="colorFilter">
+                        <option value="all">Все цвета</option>
+                        <option value="black">Черный</option>
+                        <option value="white">Белый</option>
+                        <option value="red">Красный</option>
+                        <option value="blue">Синий</option>
+                        <option value="green">Зеленый</option>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    <h3>Размер</h3>
+                    <select id="sizeFilter">
+                        <option value="all">Все размеры</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    <h3>Тип товара</h3>
+                    <select id="categoryFilter">
+                        <option value="all">Все категории</option>
+                        <option value="jackets">Куртки</option>
+                        <option value="sneakers">Кроссовки</option>
+                        <option value="shirts">Рубашки</option>
+                        <option value="jeans">Джинсы</option>
+                        <option value="dresses">Платья</option>
+                        <option value="t-shirts">Футболки</option>
+                        <option value="backpacks">Рюкзаки</option>
+                        <option value="pants">Штаны</option>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    <h3>Стиль</h3>
+                    <select id="styleFilter">
+                        <option value="all">Все стили</option>
+                        <option value="casual">Повседневный</option>
+                        <option value="sport">Спортивный</option>
+                        <option value="home">Домашний</option>
+                        <option value="elegant">Элегантный</option>
+                    </select>
+                </div>
+                <div class="filter-actions">
+                    <button id="applyFilters" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 animate__animated animate__fadeIn">
+                        Применить фильтры
+                    </button>
+                    <button id="resetFilters" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 animate__animated animate__fadeIn">
+                        Сбросить фильтры
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Товары JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Мы предлагаем лучшую женскую одежду. Наши коллекции созданы с любовью и заботой о каждом клиенте.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Улица Пушкина, 10</p>
+                <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
+                <p><i class="fas fa-envelope"></i> info@clothingstore.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="https://t.me/qwerty3790" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://vk.com/keloguys" target="_blank"><i class="fab fa-vk"></i></a>
+                    <a href="https://github.com/keloguys" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Магазин женской одежды. Все права защищены. by @qwerty3790 -telegram</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
+    <script src="scripts/script2.js"></script>
+   <!--Скрипт для кнопок-->
+   <script>
+        document.getElementById('applyFilters').addEventListener('click', function() {
+            this.classList.add('animate__pulse');
+            setTimeout(() => {
+                this.classList.remove('animate__pulse');
+            }, 500);
+        });
+
+        document.getElementById('resetFilters').addEventListener('click', function() {
+            this.classList.add('animate__pulse');
+            setTimeout(() => {
+                this.classList.remove('animate__pulse');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

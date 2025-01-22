@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин одежды</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка с меню и логотипом -->
+    <header id="header">
+        <div class="header-content">
+            <div class="logo" onclick="location.reload()">
+                <img src="https://dpbfm6h358sh7.cloudfront.net/images/15202078/916661874.jpg" alt="Логотип магазина">
+            </div>
+
+            <!-- Меню -->
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li class="dropdown">
+                        <a href="catalog.html" class="dropbtn"><i class="fas fa-list"></i> Каталог</a>
+                        <div class="dropdown-content">
+                            <a href="catalog.html?category=jackets">Куртки</a>
+                            <a href="catalog.html?category=sneakers">Кроссовки</a>
+                            <a href="catalog.html?category=shirts">Рубашки</a>
+                            <a href="catalog.html?category=jeans">Джинсы</a>
+                            <a href="catalog.html?category=dresses">Платья</a>
+                            <a href="catalog.html?category=t-shirts">Футболки</a>
+                            <a href="catalog.html?category=backpacks">Рюкзаки</a>
+                            <a href="catalog.html?category=pants">Штаны</a>
+                        </div>
+                    </li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Первый слайдер -->
+    <section class="slider slider-1">
+        <div class="slides">
+            <div class="slide active">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/15/69de1f454c197bcea352eaab06a501c09ecfb7d9.jpg?q=100&w=2560" alt="Слайд 1">
+            </div>
+            <div class="slide">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/15/ac12e3a5cabee4a8db1be340026109ea3599e56a.jpg?q=100&w=2560" alt="Слайд 2">
+            </div>
+            <div class="slide">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/13/8d6107d4139bdfe1991d33fd9dc1664a64a91b33.jpg?q=100&w=2560" alt="Слайд 3">
+            </div>
+            <div class="slide">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/15/4c2113814976034d9e9c1e84ee4f76f128763569.jpg?q=100&w=2560" alt="Слайд 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел Бестселлеры -->
+    <section class="bestsellers">
+        <h2>Бестселлеры</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/bestseller1.jpg" alt="Рубашка">
+                <h3>Рубашка</h3>
+                <button onclick="window.location.href='catalog.html?category=shirts'">Купить</button>
+                <p>Стильная рубашка для любого случая.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/bestseller2.jpg" alt="Джинсы">
+                <h3>Джинсы</h3>
+                <button onclick="window.location.href='catalog.html?category=jeans'">Купить</button>
+                <p>Удобные и модные джинсы.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/bestseller3.jpg" alt="Платье">
+                <h3>Платье</h3>
+                <button onclick="window.location.href='catalog.html?category=dresses'">Купить</button>
+                <p>Элегантное платье для вечера.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/bestseller4.jpg" alt="Куртка">
+                <h3>Куртка</h3>
+                <button onclick="window.location.href='catalog.html?category=jackets'">Купить</button>
+                <p>Теплая куртка для холодных дней.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Второй слайдер -->
+    <section class="slider slider-2">
+        <div class="slides">
+            <div class="slide active">
+                <img src="https://tz-spb-video.ru/wp-content/uploads/2019/02/128.jpg" alt="Слайд 5">
+            </div>
+            <div class="slide">
+                <img src="https://avatars.mds.yandex.net/get-mpic/5231781/img_id498271137092614952.jpeg/orig" alt="Слайд 6">
+            </div>
+            <div class="slide">
+                <img src="https://i.pinimg.com/originals/5b/d7/86/5bd786eb4a1878bf4c4b69ff66ce9cb5.jpg" alt="Слайд 7">
+            </div>
+            <div class="slide">
+                <img src="https://ir.ozone.ru/s3/multimedia-a/w1200/6483870970.jpg" alt="Слайд 8">
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел Подростки -->
+    <section class="teens">
+        <h2>Подростки</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://i.pinimg.com/736x/8d/0a/1b/8d0a1b2e4aa24e52e6fc3dbcf2964712.jpg" alt="Футболка">
+                <h3>Футболка</h3>
+                <button onclick="window.location.href='catalog.html?category=t-shirts'">Купить</button>
+                <p>Модная футболка для подростков.</p>
+            </div>
+            <div class="product-card">
+                <img src="https://i.pinimg.com/originals/26/71/a3/2671a3fc44b4ad211b9d8af0515f86c0.jpg" alt="Шорты">
+                <h3>Шорты</h3>
+                <button onclick="window.location.href='catalog.html?category=pants'">Купить</button>
+                <p>Стильные шорты для лета.</p>
+            </div>
+            <div class="product-card">
+                <img src="http://gd4.alicdn.com/bao/uploaded/i8/TB1GIB1IXXXXXXaXpXXU_3Y8FXX_031038.jpg" alt="Кроссовки">
+                <h3>Кроссовки</h3>
+                <button onclick="window.location.href='catalog.html?category=sneakers'">Купить</button>
+                <p>Удобные кроссовки для активного отдыха.</p>
+            </div>
+            <div class="product-card">
+                <img src="https://img.joomcdn.net/255727b9c29562e67c852a738a3d4017cc8de650_original.jpeg" alt="Рюкзак">
+                <h3>Рюкзак</h3>
+                <button onclick="window.location.href='catalog.html?category=backpacks'">Купить</button>
+                <p>Стильный рюкзак для школы.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Третий слайдер -->
+    <section class="slider slider-3">
+        <div class="slides">
+            <div class="slide active">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/16/1fa611d505995ae4a50a94ca3dd0dd66737c3e5b.jpg?q=100&w=2560" alt="Слайд 9">
+            </div>
+            <div class="slide">
+                <img src="https://cache-limeshop.cdnvideo.ru/limeshop/2025/01/16/a26e626879b59a2d8904c2ec2fcfeb890cef25dc.jpg?q=100&w=2560" alt="Слайд 10">
+            </div>
+            <div class="slide">
+                <img src="https://i.pinimg.com/originals/a2/43/93/a243931cc160b29f5a70c08ebb9baa9c.jpg" alt="Слайд 11">
+            </div>
+            <div class="slide">
+                <img src="https://avatars.mds.yandex.net/i?id=f7c69b6231f56cf9e78927acf69249de_l-12543315-images-thumbs&n=13" alt="Слайд 12">
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел Дети -->
+    <section class="kids">
+        <h2>Дети</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/kid1.jpg" alt="Платье">
+                <h3>Платье</h3>
+                <button onclick="window.location.href='catalog.html?category=dresses'">Купить</button>
+                <p>Красивое платье для девочек.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/kid2.jpg" alt="Футболка">
+                <h3>Футболка</h3>
+                <button onclick="window.location.href='catalog.html?category=t-shirts'">Купить</button>
+                <p>Яркая футболка для мальчиков.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/kid3.jpg" alt="Штаны">
+                <h3>Штаны</h3>
+                <button onclick="window.location.href='catalog.html?category=pants'">Купить</button>
+                <p>Удобные штаны для детей.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/kid4.jpg" alt="Куртка">
+                <h3>Куртка</h3>
+                <button onclick="window.location.href='catalog.html?category=jackets'">Купить</button>
+                <p>Теплая куртка для зимы.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Мы предлагаем лучшую одежду для всей семьи. Наши коллекции созданы с любовью и заботой о каждом клиенте.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Улица Пушкина, 10</p>
+                <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
+                <p><i class="fas fa-envelope"></i> info@clothingstore.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-icons">
+                    <a href="https://t.me/qwerty3790" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://vk.com/keloguys" target="_blank"><i class="fab fa-vk"></i></a>
+                    <a href="https://github.com/keloguys" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;  2025 Магазин женской одежды. Все права защищены. by @qwerty3790 -telegram</p>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/script2.js"></script>
+</body>
+</html>

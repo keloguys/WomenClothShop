@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница товара</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Стили для страницы товара (решил сделать внутри самой html страницы) */
+.product-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option.selected {
+    border: 2px solid #000;
+}
+
+.size-option {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.size-option.selected {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.care-instructions {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.care-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.care-item i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+.star-rating {
+    color: #ffd700;
+    font-size: 1.2em;
+}
+
+.review-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.review-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2f0e7c;
+    color: rgb(255, 0, 0);
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    max-height: 120px;
+    animation: slideIn 0.5s ease-out;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Медиазапросы для адаптации (в разработке) */
+@media (max-width: 768px) {
+    .product-container {
+        padding: 10px;
+    }
+
+    .product-image {
+        height: auto;
+    }
+
+    .care-instructions {
+        flex-direction: column;
+    }
+
+    .review-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-item img {
+        margin-bottom: 10px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        <a href="catalog.html" class="btn btn-secondary mb-4" id="back-button">
+            <i class="fas fa-arrow-left"></i> Вернуться назад
+        </a>
+
+        <div class="row">
+            <div class="col-md-6">
+                <img id="product-image" src="" alt="Изображение товара" class="product-image">
+            </div>
+
+            <div class="col-md-6">
+                <h2 id="product-name"></h2>
+                <p id="product-price" class="text-muted"></p>
+                <p id="product-stock" class="text-muted"></p>
+
+                <div class="mb-4">
+                    <h5>Выберите цвет:</h5>
+                    <div id="color-options" class="d-flex flex-wrap"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Выберите размер:</h5>
+                    <div id="size-options" class="d-flex flex-wrap"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Описание:</h5>
+                    <p id="product-description" class="text-muted"></p>
+                </div>
+                <div class="mb-4">
+                    <h5>Уход за товаром:</h5>
+                    <div id="care-instructions" class="care-instructions d-flex flex-wrap">
+                        <!-- Инструкции по уходу JavaScript -->
+                    </div>
+                </div>
+
+                <button id="add-to-cart" class="btn btn-primary w-100">
+                    <i class="fas fa-shopping-cart"></i> Добавить в корзину
+                </button>
+            </div>
+        </div>
+
+        <!-- Раздел с отзывами -->
+        <div class="mt-5">
+            <h3>Отзывы</h3>
+            <div id="reviews-list"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const selectedColor = urlParams.get('color');
+        const selectedSize = urlParams.get('size');
+        const editIndex = urlParams.get('editIndex');
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const product = products.find(p => p.id == productId);
+
+        // Кнопка вернуться назад
+        const backButton = document.getElementById('back-button');
+        if (editIndex !== null) {
+            backButton.href = "cart.html";
+        } else {
+            backButton.href = "catalog.html";
+        }
+
+        // Функция для показа модального окна
+        function showModal(message) {
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+
+            setTimeout(() => {
+                modal.style.animation = 'slideOut 0.5s ease-out';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.style.animation = '';
+                }, 500);
+            }, 3000);
+
+            const closeButton = modal.querySelector('.close');
+            closeButton.onclick = () => {
+                modal.style.animation = 'slideOut 0.5s ease-out';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.style.animation = '';
+                }, 500);
+            };
+        }
+
+        if (product) {
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-price').textContent = `Цена: ${product.price} руб.`;
+            document.getElementById('product-stock').textContent = `В наличии: ${product.stock} шт.`;
+            document.getElementById('product-description').textContent = product.description || "Описание товара отсутствует.";
+
+            const defaultColor = selectedColor || Object.keys(product.images)[0];
+            document.getElementById('product-image').src = product.images[defaultColor];
+
+            const colorOptions = document.getElementById('color-options');
+            Object.keys(product.images).forEach(color => {
+                const colorDiv = document.createElement('div');
+                colorDiv.className = `color-option ${color === defaultColor ? 'selected' : ''}`;
+                colorDiv.style.backgroundColor = color;
+                colorDiv.onclick = () => {
+                    document.getElementById('product-image').src = product.images[color];
+                    document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                    colorDiv.classList.add('selected');
+                };
+                colorOptions.appendChild(colorDiv);
+            });
+
+            const sizeOptions = document.getElementById('size-options');
+            product.sizeOptions.forEach(size => {
+                const sizeDiv = document.createElement('div');
+                sizeDiv.className = `size-option ${size === selectedSize ? 'selected' : ''}`;
+                sizeDiv.textContent = size;
+                sizeDiv.onclick = () => {
+                    document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                    sizeDiv.classList.add('selected');
+                };
+                sizeOptions.appendChild(sizeDiv);
+            });
+
+            // Отображение отзывов
+            const reviewsList = document.getElementById('reviews-list');
+            product.reviews.forEach(review => {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'review-item';
+                reviewItem.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <img src="${review.image}" alt="${review.user}">
+                        <div>
+                            <h5>${review.user}</h5>
+                            <div class="star-rating">
+                                ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                            </div>
+                            <p>${review.text}</p>
+                        </div>
+                    </div>
+                `;
+                reviewsList.appendChild(reviewItem);
+            });
+
+            document.getElementById('add-to-cart').onclick = () => {
+                const selectedSize = document.querySelector('.size-option.selected')?.textContent;
+                const selectedColor = document.querySelector('.color-option.selected')?.style.backgroundColor;
+
+                if (!selectedSize || !selectedColor) {
+                    alert("Пожалуйста, выберите размер и цвет!");
+                    return;
+                }
+
+                const cartItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    color: selectedColor,
+                    size: selectedSize,
+                    quantity: 1,
+                    images: product.images
+                };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                if (editIndex !== null) {
+                    cart[editIndex] = cartItem;
+                } else {
+                    const existingItemIndex = cart.findIndex(item => item.id === product.id && item.color === selectedColor && item.size === selectedSize);
+                    if (existingItemIndex !== -1) {
+                        cart[existingItemIndex].quantity += 1;
+                    } else {
+                        cart.push(cartItem);
+                    }
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                showModal(`Товар "${product.name}" (Цвет: ${selectedColor}, Размер: ${selectedSize}) добавлен в корзину!`);
+            };
+        } else {
+            alert("Товар не найден! Перенаправляем в каталог...");
+            window.location.href = "catalog.html";
+        }
+
+        // Отображение инструкций по уходу
+const careInstructions = document.getElementById('care-instructions');
+if (product.careInstructions) {
+    careInstructions.innerHTML = product.careInstructions.map(instruction => `
+        <div class="care-item">
+            <i class="${instruction.icon}"></i>
+            <span>${instruction.text}</span>
+        </div>
+    `).join('');
+}
+    </script>
+</body>
+</html>
